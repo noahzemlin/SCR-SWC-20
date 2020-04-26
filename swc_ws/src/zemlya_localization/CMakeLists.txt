@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(swc_example)
+project(zemlya_localization)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -71,7 +71,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs
+#   std_msgs#   swc_msgs
 # )
 
 ################################################
@@ -105,8 +105,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES swc_example
-   CATKIN_DEPENDS roscpp rospy std_msgs
+#  LIBRARIES zemlya_localization
+   CATKIN_DEPENDS roscpp rospy std_msgs swc_msgs
 #  DEPENDS system_lib
 )
 
@@ -114,20 +114,18 @@ catkin_package(
 ## Build ##
 ###########
 
-## Specify additional locations of header files
-## Your package locations should be listed before other locations
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare C++ executables
-add_executable(cpp_robot_control_node src/cpp_robot_control_node.cpp)
+add_executable(localization_node src/localization_node.cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(cpp_robot_control_node ${catkin_LIBRARIES})
+target_link_libraries(localization_node ${catkin_LIBRARIES})
 
-add_dependencies(cpp_robot_control_node swc_msgs_generate_messages_cpp)
+add_dependencies(localization_node swc_msgs_generate_messages_cpp)
 
 #############
 ## Install ##
@@ -176,7 +174,7 @@ add_dependencies(cpp_robot_control_node swc_msgs_generate_messages_cpp)
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_swc_example.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_zemlya_localization.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

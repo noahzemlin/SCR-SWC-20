@@ -1,0 +1,11 @@
+<launch>
+    <!-- Set up the bridge to the simulator -->
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+    <!-- Localization node -->
+    <node pkg="zemlya_localization" type="localization_node" name="localization_node" output="screen" />
+
+    <!-- Navigation node -->
+    <node pkg="zemlya_nav" type="nav_node" name="nav_node" output="screen" />
+
+</launch>
